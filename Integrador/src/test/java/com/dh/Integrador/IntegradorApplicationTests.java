@@ -40,6 +40,20 @@ public class IntegradorApplicationTests {
 		verify(odontologoRepository, times(1)).deleteById(1);
 	}
 
+    @Test
+    public void testActualizarOdontologo() {
+
+        Odontologo odontologoExistente = new Odontologo(1, "lopez", "adrian", "333333344");
+        Odontologo odontologoActualizado = new Odontologo(1, "martinez", "sandra", "4434455555");
+
+        when(odontologoRepository.existsById(odontologoExistente.getId())).thenReturn(true);
+        when(odontologoRepository.save(odontologoActualizado)).thenReturn(odontologoActualizado);
+
+        Odontologo resultado = odontologoService.actualizarOdontologo(odontologoActualizado);
+
+        assertNotNull(resultado, "El odontólogo actualizado no debería ser nulo");
+        assertEquals(odontologoActualizado, resultado, "El odontólogo retornado debería ser el actualizado");
+    }
 	@Test
 	void testBuscarPorId() {
 		Odontologo odontologo = new Odontologo();

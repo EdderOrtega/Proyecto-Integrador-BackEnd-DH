@@ -27,8 +27,10 @@ public class Odontologo {
 
    @OneToMany(mappedBy = "odontologo", cascade = CascadeType.REMOVE)
    @JsonManagedReference(value = "odontologo-turno")
-   //@JsonIgnore
    private Set<Turno> turnoSet;
+
+   public Odontologo(int i, String lopez, String adrian, String number) {
+   }
 
    @Override
    public String toString() {

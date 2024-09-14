@@ -67,4 +67,19 @@ public class OdontologoService implements IOdontologoService {
         }
     }
 
+    @Override
+    public Odontologo actualizarOdontologo(Odontologo odontologoActualizado) {
+        logger.info("Actualizando odontólogo: {}", odontologoActualizado);
+        try {
+            if (!odontologoRepository.existsById(odontologoActualizado.getId())) {
+                throw new RuntimeException("Odontólogo no encontrado");
+            }
+            return odontologoRepository.save(odontologoActualizado);
+        } catch (Exception e) {
+            logger.error("Error al actualizar odontólogo: {}", odontologoActualizado, e);
+            throw e;
+        }
+    }
+
+
 }
